@@ -32,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.2.22"],\
             ["@types/react-dom", "npm:18.2.7"],\
             ["autoprefixer", "virtual:afd9b0ea11d899b868a2c29a6da512ae0406d6cea5dd7171f0469705cd5ec52e9a0442640c74e1c0438436bfb3f01bfdf184d1854a4d4405d872666e1339a065#npm:10.4.16"],\
+            ["encoding", "npm:0.1.13"],\
             ["eslint", "npm:8.50.0"],\
             ["eslint-config-next", "virtual:afd9b0ea11d899b868a2c29a6da512ae0406d6cea5dd7171f0469705cd5ec52e9a0442640c74e1c0438436bfb3f01bfdf184d1854a4d4405d872666e1339a065#npm:13.5.2"],\
             ["firebase", "npm:10.4.0"],\
@@ -2483,6 +2484,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.2.22"],\
             ["@types/react-dom", "npm:18.2.7"],\
             ["autoprefixer", "virtual:afd9b0ea11d899b868a2c29a6da512ae0406d6cea5dd7171f0469705cd5ec52e9a0442640c74e1c0438436bfb3f01bfdf184d1854a4d4405d872666e1339a065#npm:10.4.16"],\
+            ["encoding", "npm:0.1.13"],\
             ["eslint", "npm:8.50.0"],\
             ["eslint-config-next", "virtual:afd9b0ea11d899b868a2c29a6da512ae0406d6cea5dd7171f0469705cd5ec52e9a0442640c74e1c0438436bfb3f01bfdf184d1854a4d4405d872666e1339a065#npm:13.5.2"],\
             ["firebase", "npm:10.4.0"],\
