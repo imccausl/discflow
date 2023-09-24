@@ -1,35 +1,42 @@
-import { auth } from './app'
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from 'firebase/auth'
 
+import { auth } from './app'
 
 export const authenticate = async (email: string, password: string) => {
-  try {
-    const result = await signInWithEmailAndPassword(auth, email, password)
+    try {
+        const result = await signInWithEmailAndPassword(auth, email, password)
 
-    return {
-      error: null,
-      result,
+        return {
+            error: null,
+            result,
+        }
+    } catch (err) {
+        return {
+            result: null,
+            error: err,
+        }
     }
-  } catch(err) {
-    return {
-      result: null,
-      error: err,
-    }
-  } 
 }
 
 export const register = async (email: string, password: string) => {
-  try {
-    const result = await createUserWithEmailAndPassword(auth, email, password)
+    try {
+        const result = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password,
+        )
 
-    return {
-      error: null,
-      result,
+        return {
+            error: null,
+            result,
+        }
+    } catch (err) {
+        return {
+            result: null,
+            error: err,
+        }
     }
-  } catch(err) {
-    return {
-      result: null,
-      error: err,
-    }
-  } 
 }
