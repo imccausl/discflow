@@ -3,6 +3,7 @@
 import { Inter } from 'next/font/google'
 
 import { AuthProvider } from 'app/firebase'
+import { Header } from 'app/components/Header'
 
 import './globals.css'
 
@@ -16,7 +17,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <AuthProvider>{children}</AuthProvider>
+                <AuthProvider>
+                    <>
+                    <Header />
+                    {children}
+                    </>
+                    </AuthProvider>
             </body>
         </html>
     )
