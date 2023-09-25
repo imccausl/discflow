@@ -1,11 +1,11 @@
-import { ProtectedRoute } from 'app/components/ProtectedRoute'
+import { RequireAuth } from 'app/components/RequireAuth'
 
 export default function Home() {
     return (
-        <ProtectedRoute>
+        <RequireAuth>
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <p>Authenticated</p>
             </main>
-        </ProtectedRoute>
+        </RequireAuth>
     )
 }
