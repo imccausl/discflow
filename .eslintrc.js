@@ -1,6 +1,5 @@
 module.exports = {
   "extends": [
-    "next/core-web-vitals",
     "@tophat/eslint-config/base",
     "@tophat/eslint-config/web"
   ],
