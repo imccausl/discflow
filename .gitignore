@@ -9,6 +9,7 @@
 .yarn/unplugged
 !.yarn/sdks
 .yarn/install-state.gz
+.pnp.*
 
 
 # testing
