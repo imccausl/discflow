@@ -10,8 +10,9 @@ First, run the development server:
 nvm use
 corepack enable
 yarn dev
+```
 
-## Welcome to Remix!
+## Welcome to Remix
 
 - [Remix Docs](https://remix.run/docs)
 
