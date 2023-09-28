@@ -5,9 +5,12 @@
     "sideEffects": true,
     "scripts": {
         "build": "remix build",
+        "build:css": "npm run generate:css -- --minify",
         "dev": "remix dev --manual",
+        "dev:css": "npm run generate:css -- --watch",
         "start": "remix-serve ./build/index.js",
-        "typecheck": "tsc"
+        "typecheck": "tsc",
+        "generate:css": "tailwindcss -o ./app/styles/tailwind.css"
     },
     "dependencies": {
         "@remix-run/node": "^2.0.1",
@@ -36,6 +39,7 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "postcss": "^8.4.30",
         "prettier": "^3.0.3",
+        "prettier-plugin-tailwindcss": "^0.5.4",
         "tailwindcss": "^3.3.3",
         "typescript": "5.2.2"
     },
