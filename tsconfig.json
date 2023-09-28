@@ -2,7 +2,16 @@
   "include": [
     "remix.env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".eslintrc.js",
+    "remix.config.js",
+    "postcss.config.js",
+  ],
+  "exclude": [
+    "public",
+    "build",
+    ".yarn",
+    ".pnp.*"
   ],
   "compilerOptions": {
     "lib": [
