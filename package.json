@@ -7,7 +7,7 @@
     "scripts": {
         "build": "remix build",
         "build:css": "npm run generate:css -- --minify",
-        "dev": "remix dev --manual",
+        "dev": "USE_FIREBASE_EMULATOR=true remix dev --manual",
         "dev:css": "npm run generate:css -- --watch",
         "start": "remix-serve ./build/index.js",
         "typecheck": "tsc",
@@ -21,6 +21,7 @@
         "@types/react": "18.2.22",
         "@types/react-dom": "18.2.7",
         "firebase": "^10.4.0",
+        "firebase-admin": "^11.11.0",
         "isbot": "^3.7.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
