@@ -1,7 +1,14 @@
+import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 import { Form } from '@remix-run/react'
-import { signOut } from 'app/firebase/session.server'
+import { signOut, requireUserSession } from 'app/firebase/session.server'
 
-export const action = async ({ request }) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+    const session = await requireUserSession(request)
+
+    return session
+}
+
+export const action = async ({ request }: ActionFunctionArgs) => {
     return signOut(request)
 }
 

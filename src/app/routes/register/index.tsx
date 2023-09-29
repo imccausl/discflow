@@ -1,11 +1,14 @@
+import type { ActionFunctionArgs } from '@remix-run/node'
 import { Form, Link } from '@remix-run/react'
 import { register } from 'app/firebase/auth.server'
 import { createUserSession } from 'app/firebase/session.server'
 
-export const action = async ({ request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get('password')
+
+    if (!email || !password) throw new Error('Missing email or password')
 
     const { user } = await register(email, password)
     const token = await user.getIdToken()
@@ -23,7 +26,7 @@ export default function Register() {
                     Email
                 </label>
                 <input
-                    type="email"
+                    type="text"
                     id="email-field"
                     name="email"
                     className="w-full rounded-md border border-gray-300 p-2"

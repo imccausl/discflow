@@ -7,30 +7,31 @@ const sessionSecret = process.env.SESSION_SECRET
 
 if (!sessionSecret) throw new Error('Missing SESSION_SECRET')
 
-const storage = createCookieSessionStorage({
-    cookie: {
-        name: '__session',
-        secure: process.env.NODE_ENV === 'production',
-        secrets: [sessionSecret],
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-        httpOnly: true,
-    },
-})
+const { getSession, commitSession, destroySession } =
+    createCookieSessionStorage({
+        cookie: {
+            name: '__session',
+            secure: process.env.NODE_ENV === 'production',
+            secrets: [sessionSecret],
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 60 * 60 * 24 * 30, // 30 days
+            httpOnly: true,
+        },
+    })
 
 export const createUserSession = async (
     idToken: string,
     redirectTo: string,
 ) => {
     const token = await getSessionToken(idToken)
-    const session = await storage.getSession()
+    const session = await getSession()
 
     session.set('token', token)
 
     return redirect(redirectTo, {
         headers: {
-            'Set-Cookie': await storage.commitSession(session),
+            'Set-Cookie': await commitSession(session),
         },
     })
 }
@@ -45,9 +46,7 @@ export const getSessionToken = async (idToken: string) => {
 }
 
 export const getUserSession = async (request: Request) => {
-    const cookieSession = await storage.getSession(
-        request.headers.get('Cookie'),
-    )
+    const cookieSession = await getSession(request.headers.get('Cookie'))
     const token = cookieSession.get('token')
     if (!token) return null
 
@@ -60,14 +59,20 @@ export const getUserSession = async (request: Request) => {
     }
 }
 
-async function destroySession(request: Request) {
-    const session = await storage.getSession(request.headers.get('Cookie'))
-    const newCookie = await storage.destroySession(session)
+async function destroyFirebaseSession(request: Request) {
+    const session = await getSession(request.headers.get('Cookie'))
+    const newCookie = await destroySession(session)
 
     return redirect('/login', { headers: { 'Set-Cookie': newCookie } })
 }
 
 export async function signOut(request: Request) {
     await signOutFirebase()
-    return await destroySession(request)
+    return await destroyFirebaseSession(request)
+}
+
+export async function requireUserSession(request: Request) {
+    const tokenUser = await getUserSession(request)
+    if (!tokenUser) return redirect('/login')
+    return tokenUser
 }
