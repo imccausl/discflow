@@ -1,8 +1,9 @@
 import { Form, Link } from '@remix-run/react'
 import { createUserSession } from 'app/firebase/session.server'
 import { authenticate } from 'app/firebase/auth.server'
+import type { ActionFunctionArgs } from '@remix-run/node'
 
-export const action = async ({ request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get('password')
@@ -41,7 +42,7 @@ export default function Login() {
                     type="submit"
                     className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white"
                 >
-                    Register
+                    Log In
                 </button>
             </Form>
             <Link to="/register" className="mt-4 block">

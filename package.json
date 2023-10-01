@@ -24,7 +24,8 @@
         "firebase-admin": "^11.11.0",
         "isbot": "^3.7.0",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "zod": "^3.22.2"
     },
     "devDependencies": {
         "@remix-run/dev": "^2.0.1",
