@@ -54,7 +54,7 @@ export default function App() {
 
 export function ErrorBoundary() {
     const error = useRouteError()
-    console.log(error)
+
     return (
         <html lang="en" className="h-full bg-gray-100">
             <head>
@@ -68,7 +68,8 @@ export function ErrorBoundary() {
             </head>
             <body className="h-full">
                 <>
-                    <Header user={null} />
+                    <Header user={null} />{' '}
+                    {/* TODO: Header should be in layout to access user data */}
                     <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
                         {
                             isRouteErrorResponse(error) &&
