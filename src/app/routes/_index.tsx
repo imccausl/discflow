@@ -12,7 +12,7 @@ export default function Index() {
     return (
         <div>
             <h1 className="sr-only">Home</h1>
-            <div className="bg-white py-24 sm:py-32">
+            <div className="bg-white py-2">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl sm:text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

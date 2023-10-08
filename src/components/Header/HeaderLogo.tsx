@@ -1,11 +1,10 @@
 import { Link } from '@remix-run/react'
+import logo from './images/logo.png'
 
-type HeaderLogoProps = {
-    imgUrl: string
-}
-
-export const HeaderLogo: React.FC<HeaderLogoProps> = ({ imgUrl }) => (
+export const HeaderLogo: React.FC<{ className?: string }> = ({
+    className = 'h-8 w-8',
+}) => (
     <Link to="/">
-        <img className="h-8 w-8" src={imgUrl} alt="discflow" />
+        <img className={className} src={logo} alt="discflow" />
     </Link>
 )

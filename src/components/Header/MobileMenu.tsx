@@ -8,7 +8,7 @@ const DisclosureTrigger: React.FC = () => {
             <div className="-mr-2 flex md:hidden">
                 <button
                     type="button"
-                    className="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500"
                 >
                     <span className="absolute -inset-0.5"></span>
                     <span className="sr-only">Open main menu</span>

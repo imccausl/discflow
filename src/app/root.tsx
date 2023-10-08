@@ -31,7 +31,7 @@ export default function App() {
     const data = useLoaderData<typeof loader>()
 
     return (
-        <html lang="en" className="h-full bg-gray-100">
+        <html lang="en" className="h-full bg-white">
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -43,7 +43,7 @@ export default function App() {
             </head>
             <body className="h-full">
                 <Header user={data} />
-                <main className="absolute left-0 top-[64px] p-5">
+                <main className="absolute left-0 top-[64px] w-full p-5">
                     <Outlet />
                     <ScrollRestoration />
                     <Scripts />

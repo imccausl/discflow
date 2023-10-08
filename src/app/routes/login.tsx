@@ -2,6 +2,7 @@ import { Form, Link } from '@remix-run/react'
 import { createUserSession } from 'app/firebase/session.server'
 import { authenticate } from 'app/firebase/auth.server'
 import type { ActionFunctionArgs } from '@remix-run/node'
+import { Input } from 'app/components/Input'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData()
@@ -16,38 +17,81 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function Login() {
     return (
-        <div className="p-5">
-            <h1 className="text-3xl font-bold">Login</h1>
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    Sign in to your account
+                </h2>
+            </div>
 
-            <Form method="post">
-                <label htmlFor="email-field" className="mt-4 block">
-                    Email
-                </label>
-                <input
-                    type="email"
-                    id="email-field"
-                    name="email"
-                    className="w-full rounded-md border border-gray-300 p-2"
-                />
-                <label htmlFor="password-field" className="mt-4 block">
-                    Password
-                </label>
-                <input
-                    type="password"
-                    id="password-field"
-                    name="password"
-                    className="w-full rounded-md border border-gray-300 p-2"
-                />
-                <button
-                    type="submit"
-                    className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white"
-                >
-                    Log In
-                </button>
-            </Form>
-            <Link to="/register" className="mt-4 block">
-                Don't have an account? Register
-            </Link>
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <Form className="space-y-6" method="post">
+                    <div>
+                        <label
+                            htmlFor="email"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                        >
+                            Email address
+                        </label>
+                        <div className="mt-2">
+                            <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autoComplete="email"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label
+                                htmlFor="password"
+                                className="block text-sm font-medium leading-6 text-gray-900"
+                            >
+                                Password
+                            </label>
+                            <div className="text-sm">
+                                <Link
+                                    to="/recover-password"
+                                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                                >
+                                    Forgot password?
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="mt-2">
+                            <Input
+                                id="password"
+                                name="password"
+                                type="password"
+                                autoComplete="current-password"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Sign in
+                        </button>
+                    </div>
+                </Form>
+
+                <p className="mt-10 text-center text-sm text-gray-500">
+                    Not a member?{' '}
+                    <Link
+                        to="/signup"
+                        className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                    >
+                        Sign up for a free account
+                    </Link>
+                </p>
+            </div>
         </div>
     )
 }

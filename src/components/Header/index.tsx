@@ -6,7 +6,6 @@ import { useDisclosure } from '../Disclosure'
 import { MobileUserMenu } from './UserMenu/MobileUserMenu'
 import { NotificationButton } from './NotificationButton'
 import { HeaderLogo } from './HeaderLogo'
-import logo from './images/logo.png'
 
 type HeaderProps = {
     user: Record<string, any> | null
@@ -44,12 +43,12 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
     const mobileMenuRef = useRef<HTMLDivElement>(null)
 
     return (
-        <header className="fixed left-0 top-0 z-[1000] w-full bg-gray-800">
+        <header className="fixed left-0 top-0 z-[1000] w-full border-b-[1px] border-b-gray-200 bg-white">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <HeaderLogo imgUrl={logo} />
+                            <HeaderLogo />
                         </div>
                         <div className="hidden md:block">
                             <nav className="ml-10 flex items-baseline space-x-4">
