@@ -1503,6 +1503,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@heroicons/react@npm:2.0.18"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 597e8668818623d568a302e343ef06b69f62ce297c14b88c2ebbfed0c0f00cd85ec44fae33ec8a249931b4e7dcf145743ae3198095a9f4682108de5155f5f4c3
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.11":
   version: 0.11.11
   resolution: "@humanwhocodes/config-array@npm:0.11.11"
@@ -3839,6 +3848,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "discflow@workspace:."
   dependencies:
+    "@heroicons/react": ^2.0.18
     "@remix-run/dev": ^2.0.1
     "@remix-run/eslint-config": ^2.0.1
     "@remix-run/node": ^2.0.1
