@@ -3,6 +3,7 @@ import { NavLink } from '@remix-run/react'
 type HeaderLinkProps = {
     to: string
     label: string
+    onClick?: () => void
 }
 
 const baseClasses =
@@ -10,13 +11,18 @@ const baseClasses =
 const activeClasses = 'bg-gray-900 text-white'
 const inactiveClasses = 'text-gray-300 hover:bg-gray-700 hover:text-white'
 
-export const HeaderLink: React.FC<HeaderLinkProps> = ({ to, label }) => {
+export const HeaderLink: React.FC<HeaderLinkProps> = ({
+    to,
+    label,
+    onClick = undefined,
+}) => {
     return (
         <NavLink
             to={to}
             className={({ isActive }) =>
                 `${isActive ? activeClasses : inactiveClasses} ${baseClasses}`
             }
+            onClick={onClick}
         >
             {label}
         </NavLink>

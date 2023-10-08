@@ -1,6 +1,5 @@
 import React, {
     useState,
-    useMemo,
     useContext,
     createContext,
     useRef,
@@ -11,16 +10,11 @@ import React, {
 import { createPortal } from 'react-dom'
 import { Revealer } from 'app/components/Revealer'
 
-type DisclosureTriggerA11yValues = {
-    'aria-expanded': boolean
-    'aria-controls': string | undefined
-}
-
 type DisclosureContextType = null | {
     isShowing: boolean
     setIsShowing: (isShowing: boolean) => void
     buttonRef: React.RefObject<HTMLButtonElement>
-    triggerA11yValues: DisclosureTriggerA11yValues
+    closeDisclosure: () => void
 }
 interface Disclosure extends React.FC<React.PropsWithChildren> {
     Content: typeof DisclosureContent
@@ -29,7 +23,7 @@ interface Disclosure extends React.FC<React.PropsWithChildren> {
 
 const DisclosureContext = createContext<DisclosureContextType>(null)
 
-export const useDisclosureValues = () => {
+export const useDisclosure = () => {
     const context = useContext(DisclosureContext)
 
     if (!context) {
@@ -44,7 +38,7 @@ export const useDisclosureValues = () => {
 const DisclosureContent: React.FC<
     React.PropsWithChildren & { attachTo?: React.RefObject<HTMLElement> }
 > = ({ children, attachTo }) => {
-    const { isShowing } = useDisclosureValues()
+    const { isShowing } = useDisclosure()
 
     if (attachTo?.current) {
         return createPortal(
@@ -57,8 +51,7 @@ const DisclosureContent: React.FC<
 }
 
 const DisclosureTrigger: React.FC<React.PropsWithChildren> = ({ children }) => {
-    const { isShowing, setIsShowing, buttonRef, triggerA11yValues } =
-        useDisclosureValues()
+    const { isShowing, setIsShowing, buttonRef } = useDisclosure()
 
     if (
         !children ||
@@ -68,6 +61,11 @@ const DisclosureTrigger: React.FC<React.PropsWithChildren> = ({ children }) => {
         throw new Error(
             `The Trigger component must have exactly one child element`,
         )
+    }
+
+    const triggerA11yValues = {
+        'aria-expanded': isShowing,
+        'aria-controls': '', // TODO: should be the id of the disclosure container
     }
 
     const handleOnClick = () => {
@@ -84,12 +82,7 @@ const DisclosureTrigger: React.FC<React.PropsWithChildren> = ({ children }) => {
 const Disclosure: Disclosure = ({ children }) => {
     const [isShowing, setIsShowing] = useState(false)
     const buttonRef = useRef<HTMLButtonElement>(null)
-    const triggerA11yValues = useMemo(() => {
-        return {
-            'aria-expanded': isShowing,
-            'aria-controls': '', // should be the id of the disclosure container
-        }
-    }, [isShowing])
+    const closeDisclosure = () => setIsShowing(false)
 
     return (
         <DisclosureContext.Provider
@@ -97,7 +90,7 @@ const Disclosure: Disclosure = ({ children }) => {
                 isShowing,
                 setIsShowing,
                 buttonRef,
-                triggerA11yValues,
+                closeDisclosure,
             }}
         >
             {children}

@@ -1,7 +1,7 @@
-import { Disclosure, useDisclosureValues } from 'app/components/Disclosure'
+import { Disclosure, useDisclosure } from 'app/components/Disclosure'
 
 const DisclosureTrigger: React.FC = () => {
-    const { isShowing } = useDisclosureValues()
+    const { isShowing } = useDisclosure()
 
     return (
         <Disclosure.Trigger>
@@ -45,6 +45,7 @@ const DisclosureTrigger: React.FC = () => {
         </Disclosure.Trigger>
     )
 }
+
 export const MobileMenu: React.FC<
     React.PropsWithChildren & { attachTo: React.RefObject<HTMLElement> }
 > = ({ children, attachTo }) => {

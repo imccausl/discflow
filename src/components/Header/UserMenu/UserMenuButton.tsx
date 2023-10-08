@@ -1,6 +1,6 @@
 export const UserMenuButton: React.FC<
     React.PropsWithChildren & {
-        onClick: () => void
+        onClick?: () => void
     }
 > = ({ children, ...restProps }) => (
     <button

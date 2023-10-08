@@ -1,12 +1,7 @@
 import { ActionMenu } from 'app/components/ActionMenu'
 import { Avatar } from '../Avatar'
 import { UserMenuButton } from './UserMenuButton'
-
-const userMenuItems = [
-    { href: '/profile', label: 'Profile' },
-    { href: '/settings', label: 'Settings' },
-    { href: '/logout', label: 'Sign Out' },
-]
+import { userMenuItems } from './UserMenu.constants'
 
 const getUserMenuItems = () => {
     return userMenuItems.map(({ href, label }) => (
