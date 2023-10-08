@@ -34,7 +34,7 @@ export default function Register() {
     const data = useActionData<typeof action>()
 
     return (
-        <main className="p-5">
+        <div className="p-5">
             <h1 className="text-3xl font-bold">Register</h1>
 
             <Form method="post">
@@ -75,6 +75,6 @@ export default function Register() {
             <Link to="/login" className="mt-4 block">
                 Already have an account? Login
             </Link>
-        </main>
+        </div>
     )
 }

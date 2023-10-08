@@ -14,7 +14,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function Admin() {
     return (
-        <main className="p-5">
+        <div>
             <h1>Admin</h1>
             <Form method="post">
                 <button
@@ -24,6 +24,6 @@ export default function Admin() {
                     Sign Out
                 </button>
             </Form>
-        </main>
+        </div>
     )
 }

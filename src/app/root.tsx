@@ -43,10 +43,12 @@ export default function App() {
             </head>
             <body className="h-full">
                 <Header user={data} />
-                <Outlet />
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
+                <main className="absolute left-0 top-[64px] p-5">
+                    <Outlet />
+                    <ScrollRestoration />
+                    <Scripts />
+                    <LiveReload />
+                </main>
             </body>
         </html>
     )

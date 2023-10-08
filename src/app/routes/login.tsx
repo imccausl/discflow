@@ -16,7 +16,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function Login() {
     return (
-        <main className="p-5">
+        <div className="p-5">
             <h1 className="text-3xl font-bold">Login</h1>
 
             <Form method="post">
@@ -48,6 +48,6 @@ export default function Login() {
             <Link to="/register" className="mt-4 block">
                 Don't have an account? Register
             </Link>
-        </main>
+        </div>
     )
 }

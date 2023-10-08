@@ -22,10 +22,10 @@ const MobileHeaderLinkGroup: React.FC<{
     const { closeDisclosure } = useDisclosure()
 
     return (
-        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+        <nav className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <HeaderLinkGroup onClick={closeDisclosure} />
             <HeaderLink to="/login" label="Log in" onClick={closeDisclosure} />
-        </div>
+        </nav>
     )
 }
 
@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
     const mobileMenuRef = useRef<HTMLDivElement>(null)
 
     return (
-        <nav className="bg-gray-800">
+        <header className="fixed left-0 top-0 z-[1000] w-full bg-gray-800">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
@@ -52,9 +52,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
                             <HeaderLogo imgUrl={logo} />
                         </div>
                         <div className="hidden md:block">
-                            <div className="ml-10 flex items-baseline space-x-4">
+                            <nav className="ml-10 flex items-baseline space-x-4">
                                 <HeaderLinkGroup />
-                            </div>
+                            </nav>
                         </div>
                     </div>
                     <div className="hidden md:block">
@@ -79,6 +79,6 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
                 </div>
             </div>
             <div ref={mobileMenuRef} className="md:hidden" />
-        </nav>
+        </header>
     )
 }

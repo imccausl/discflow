@@ -16,7 +16,7 @@ const MobileUserMenuItems: React.FC = () => {
         />
     ))
 
-    return <div className="mt-3 space-y-1 px-2">{menuItems}</div>
+    return <nav className="mt-3 space-y-1 px-2">{menuItems}</nav>
 }
 
 export const MobileUserMenu: React.FC = () => {
