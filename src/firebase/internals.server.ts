@@ -8,6 +8,7 @@ if (!admin.apps.length) {
     initializeAdminApp({
         credential: applicationDefault(),
         projectId: 'discflow-bed9f',
+        databaseURL: 'https://discflow-bed9f-default-rtdb.firebaseio.com/',
     })
 }
 

@@ -70,7 +70,7 @@ export default function Profile() {
                                     <Input
                                         type="text"
                                         name="full-name"
-                                        id="first-name"
+                                        id="full-name"
                                         autoComplete="full-name"
                                         placeholder="Example McExampleson"
                                         defaultValue={user?.name ?? ''}

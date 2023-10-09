@@ -13,7 +13,7 @@ import {
 } from '@remix-run/react'
 
 import stylesheet from '~/tailwind.css'
-import { Header } from 'app/components/Header'
+import { Header } from 'app/components/NavHeader'
 import { getUserSession } from 'app/firebase/session.server'
 import type { User } from 'firebase/auth'
 

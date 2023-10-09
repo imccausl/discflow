@@ -38,7 +38,7 @@ const HeaderLinkGroup: React.FC<HeaderLinkGroupProps> = ({
 }) => (
     <>
         <HeaderLink onClick={onClick} to="/home" label="Home" />
-        <HeaderLink onClick={onClick} to="/discs" label="My Discs" />
+        <HeaderLink onClick={onClick} to="/discs" label="Discs" />
         <HeaderLink onClick={onClick} to="/clubs" label="Clubs" />
         <HeaderLink onClick={onClick} to="/admin" label="Admin" />
     </>
