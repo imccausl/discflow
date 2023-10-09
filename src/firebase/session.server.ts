@@ -1,7 +1,7 @@
 import { createCookieSessionStorage, redirect } from '@remix-run/node'
 
 import { adminAuth } from 'app/firebase/internals.server'
-import { signOutFirebase } from 'app/firebase/auth.server'
+import { signOutFirebase } from 'app/firebase/auth.client'
 
 const sessionSecret = process.env.SESSION_SECRET
 

@@ -1,8 +1,4 @@
-import {
-    type LinksFunction,
-    type LoaderFunctionArgs,
-    json,
-} from '@remix-run/node'
+import { type LinksFunction, type LoaderFunction, json } from '@remix-run/node'
 import {
     Links,
     LiveReload,
@@ -19,17 +15,18 @@ import {
 import stylesheet from '~/tailwind.css'
 import { Header } from 'app/components/Header'
 import { getUserSession } from 'app/firebase/session.server'
+import type { User } from 'firebase/auth'
+
 export const links: LinksFunction = () => [
     { rel: 'stylesheet', href: stylesheet },
 ]
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader: LoaderFunction = async ({ request }) => {
     return json(await getUserSession(request))
 }
 
 export default function App() {
-    const data = useLoaderData<typeof loader>()
-
+    const data = useLoaderData<typeof loader>() as User
     return (
         <html lang="en" className="h-full bg-white">
             <head>

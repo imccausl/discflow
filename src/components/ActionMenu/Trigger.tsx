@@ -15,7 +15,6 @@ export const Trigger: React.FC<React.PropsWithChildren> = ({ children }) => {
     }
 
     const handleOnClick = () => {
-        console.log({ isOpen })
         setIsOpen(!isOpen)
     }
 

@@ -1,9 +1,11 @@
-import { type ActionFunctionArgs, json } from '@remix-run/node'
-import { Form, Link, useActionData } from '@remix-run/react'
+import { json } from '@remix-run/node'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { Form, Link, useActionData, useLoaderData } from '@remix-run/react'
 import { register } from 'app/firebase/auth.client'
-import { createUserSession } from 'app/firebase/session.server'
+import { requireUserSession } from 'app/firebase/session.server'
 import { z } from 'zod'
 import { Input } from 'app/components/Input'
+import type { User } from 'firebase/auth'
 
 const registerSchema = z.object({
     email: z
@@ -14,7 +16,7 @@ const registerSchema = z.object({
         .min(6, { message: 'Enter a password of at least 6 characters' }),
 })
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action: ActionFunction = async ({ request }) => {
     const formPayload = Object.fromEntries(await request.formData())
 
     const result = registerSchema.safeParse(formPayload)
@@ -27,17 +29,25 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const { user } = await register(email, password)
     const token = await user.getIdToken()
 
-    return createUserSession(token, '/home')
+    return //createUserSession(token, '/home')
 }
 
-export default function Register() {
+export const loader: LoaderFunction = async ({ request }) => {
+    const session = await requireUserSession(request)
+
+    return json(session)
+}
+
+export default function Profile() {
     const data = useActionData<typeof action>()
+    const user = useLoaderData<typeof loader>() as User
+    console.log({ user })
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 className="mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    Sign Up
+                    Profile
                 </h2>
             </div>
 
@@ -49,36 +59,21 @@ export default function Register() {
                         </h2>
 
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                            <div className="sm:col-span-3">
+                            <div className="sm:col-span-4">
                                 <label
-                                    htmlFor="first-name"
+                                    htmlFor="full-name"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    First name
+                                    Full Name
                                 </label>
                                 <div className="mt-2">
                                     <Input
                                         type="text"
-                                        name="first-name"
+                                        name="full-name"
                                         id="first-name"
-                                        autoComplete="given-name"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="sm:col-span-3">
-                                <label
-                                    htmlFor="last-name"
-                                    className="block text-sm font-medium leading-6 text-gray-900"
-                                >
-                                    Last name
-                                </label>
-                                <div className="mt-2">
-                                    <Input
-                                        type="text"
-                                        name="last-name"
-                                        id="last-name"
-                                        autoComplete="family-name"
+                                        autoComplete="full-name"
+                                        placeholder="Example McExampleson"
+                                        defaultValue={user?.name ?? ''}
                                     />
                                 </div>
                             </div>
@@ -96,6 +91,8 @@ export default function Register() {
                                         name="email"
                                         type="email"
                                         autoComplete="email"
+                                        placeholder="my@example.email"
+                                        defaultValue={user?.email ?? ''}
                                     />
                                 </div>
                             </div>
@@ -197,7 +194,7 @@ export default function Register() {
                         type="submit"
                         className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                        Sign Up
+                        Save
                     </button>
                 </div>
             </Form>

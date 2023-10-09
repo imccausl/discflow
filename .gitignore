@@ -32,6 +32,9 @@ yarn-error.log*
 # local env file
 .env
 
+# secrets
+firebase.config.*
+
 # typescript
 *.tsbuildinfo
 
