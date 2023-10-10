@@ -1,10 +1,10 @@
 type HeadingProps = {
-    heading: string
+    content: string
     description?: string
 }
 
 export const Heading: React.FC<React.PropsWithChildren & HeadingProps> = ({
-    heading,
+    content,
     description,
     children,
 }) => {
@@ -12,7 +12,7 @@ export const Heading: React.FC<React.PropsWithChildren & HeadingProps> = ({
         <div className=" flex w-full flex-row items-center justify-between">
             <div className="w-full flex-grow">
                 <h1 className="text-base font-semibold text-gray-900">
-                    {heading}
+                    {content}
                 </h1>
                 {description ? (
                     <p className="pt-1 text-sm text-gray-700">{description}</p>
