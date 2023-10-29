@@ -1,5 +1,5 @@
-import { Card } from 'app/components/Card'
 import { List } from 'app/components/List'
+import { PageHeader } from 'app/components/PageHeader'
 
 type DiscCardProps = {
     heading: string
@@ -135,7 +135,9 @@ export const DiscCard: React.FC<DiscCardProps> = ({
     actions,
 }) => {
     return (
-        <Card heading={heading} subheading={subheading} actions={actions}>
+        <>
+            <PageHeader title="My Discs" />
+
             <ul className="min-w-full divide-y divide-gray-100">
                 {fakeData.map((disc) => (
                     <List
@@ -149,6 +151,6 @@ export const DiscCard: React.FC<DiscCardProps> = ({
                     />
                 ))}
             </ul>
-        </Card>
+        </>
     )
 }

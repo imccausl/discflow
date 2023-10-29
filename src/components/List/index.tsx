@@ -33,23 +33,23 @@ export const List: React.FC<DiscItemProps> = ({
     } as const
 
     return (
-        <li className="mb-2 flex min-w-full justify-between px-2 py-3">
+        <li className="mb-2 flex min-w-full justify-between py-3">
             <img
                 className="h-12 w-12 flex-none rounded-full bg-gray-50"
                 src={imageUrl}
                 alt=""
             />
             <div className="ml-3 flex-auto flex-col">
-                <p className="flex flex-row justify-between text-sm font-semibold leading-6 text-gray-900">
-                    <div className="mr-2 flex justify-center">
+                <div className="flex flex-row justify-between text-sm  leading-6 text-gray-900">
+                    <p className="mr-2 flex justify-center font-semibold">
                         {name} ({plastic})
-                    </div>
+                    </p>
                     {status !== DiscStatus.NONE ? (
                         <Badge variant={variantStatusMap[status]}>
                             {status}
                         </Badge>
                     ) : null}
-                </p>
+                </div>
                 <div className="align-center mt-0 flex min-w-full flex-auto flex-row justify-between">
                     <FlightNumbers
                         speed={speed}
