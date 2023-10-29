@@ -3,6 +3,7 @@ import { FlightNumbers } from 'app/components/FlightNumbers'
 
 type DiscItemProps = {
     name: string
+    plastic: string
     flightNumbers: Record<string, number>
     status: string
     type: string
@@ -18,6 +19,7 @@ const DiscStatus = {
 
 export const List: React.FC<DiscItemProps> = ({
     name,
+    plastic,
     flightNumbers,
     status,
     type,
@@ -39,7 +41,9 @@ export const List: React.FC<DiscItemProps> = ({
             />
             <div className="ml-3 flex-auto flex-col">
                 <p className="flex flex-row justify-between text-sm font-semibold leading-6 text-gray-900">
-                    <div className="mr-2 flex justify-center">{name}</div>
+                    <div className="mr-2 flex justify-center">
+                        {name} ({plastic})
+                    </div>
                     {status !== DiscStatus.NONE ? (
                         <Badge variant={variantStatusMap[status]}>
                             {status}
