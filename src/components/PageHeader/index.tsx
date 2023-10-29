@@ -36,7 +36,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     return (
         <div className="mb-4 lg:flex lg:items-center lg:justify-between">
             <div className="flex min-w-0 flex-1 items-center justify-between">
-                <h2 className="text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                <h2 className="text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl sm:tracking-tight">
                     {title}
                 </h2>
                 <div className="flex-2">

@@ -138,7 +138,7 @@ export const DiscCard: React.FC<DiscCardProps> = ({
         <>
             <PageHeader title="My Discs" />
 
-            <ul className="min-w-full divide-y divide-gray-100">
+            <ul className="min-w-full">
                 {fakeData.map((disc) => (
                     <List
                         key={`${disc.name}-${disc.plastic}`}

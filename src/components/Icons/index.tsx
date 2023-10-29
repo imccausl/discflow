@@ -1,0 +1,8 @@
+export { SolidMinusIcon } from './SolidMinusIcon'
+export { OutlinePlusIcon } from './OutlinePlusIcon'
+export { OutlineStarIcon } from './OutlineStarIcon'
+export { SolidStarIcon } from './SolidStarIcon'
+export { OutlineEditIcon } from './OutlineEditIcon'
+export { OutlineMapPinIcon } from './OutlineMapPinIcon'
+export { SolidMapPinIcon } from './SolidMapPinIcon'
+export { OutlineChatBubbleIcon } from './OutlineChatBubbleIcon'
