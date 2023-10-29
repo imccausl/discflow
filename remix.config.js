@@ -3,6 +3,7 @@ export default {
     ignoredRouteFiles: ['**/.*'],
     appDirectory: 'src/app',
     tailwind: true,
+    watchPaths: ['./src/components/**/*'],
     // assetsBuildDirectory: "public/build",
     // publicPath: "/build/",
     // serverBuildPath: "build/index.js",

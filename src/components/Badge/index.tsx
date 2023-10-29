@@ -1,12 +1,12 @@
 export const Variant = {
-    DEFAULT: 'DEFAULT',
-    PRIMARY: 'PRIMARY',
-    SUCCESS: 'SUCCESS',
-    WARNING: 'WARNING',
-    DANGER: 'DANGER',
-    INFO: 'INFO',
-    PURPLE: 'PURPLE',
-    PINK: 'PINK',
+    DEFAULT: 'default',
+    PRIMARY: 'primary',
+    SUCCESS: 'success',
+    WARNING: 'warning',
+    DANGER: 'danger',
+    INFO: 'info',
+    PURPLE: 'purple',
+    PINK: 'pink',
 } as const
 
 const variantsToClassNames = {
@@ -21,7 +21,7 @@ const variantsToClassNames = {
 } as const
 
 const baseStyles =
-    'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset'
+    'inline-flex items-center rounded-md h-5 px-2 py-2 uppercase text-[12px] font-medium ring-1 ring-inset'
 
 type BadgeProps = {
     variant?: (typeof Variant)[keyof typeof Variant]
