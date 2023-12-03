@@ -7,6 +7,7 @@ type ButtonProps = React.PropsWithChildren &
         variant?: ButtonVariant
         leadingIcon?: React.ReactNode
         disabled?: boolean
+        rounded?: boolean
     }
 
 export const Variant = {
@@ -40,21 +41,31 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             disabled = false,
             variant = Variant.DEFAULT,
             leadingIcon,
+            rounded = false,
             ...restProps
         },
         ref,
     ) => {
         return (
             <button
-                className={`${variantStyleMap[variant]} ${borderStyleMap[variant]} flex flex-row items-center justify-between rounded-md px-2 py-1 text-xs font-semibold text-gray-400 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600`}
+                className={`${variantStyleMap[variant]} ${
+                    borderStyleMap[variant]
+                } flex flex-row items-center text-xs font-semibold text-gray-400 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ${
+                    rounded
+                        ? 'm-0 h-fit w-fit justify-center rounded-full p-2'
+                        : 'justify-between rounded-md px-2 py-1'
+                }`}
                 ref={ref}
             >
                 {leadingIcon ? (
-                    <span aria-hidden="true" className="mr-1">
+                    <div
+                        aria-hidden="true"
+                        className={`flex-1 ${!rounded && 'mr-2'}`}
+                    >
                         {leadingIcon}
-                    </span>
+                    </div>
                 ) : null}
-                {children}
+                <div className="flex-2">{children}</div>
             </button>
         )
     },
@@ -67,9 +78,15 @@ type IconButtonProps = {
 }
 
 const IconButton = forwardRef<HTMLButtonElement, ButtonProps & IconButtonProps>(
-    ({ children, label, ...restProps }) => {
+    ({ children, label, ...restProps }, ref) => {
         return (
-            <Button aria-label={label} variant={Variant.PLAIN} {...restProps}>
+            <Button
+                rounded={true}
+                ref={ref}
+                aria-label={label}
+                variant={Variant.PLAIN}
+                {...restProps}
+            >
                 {children}
             </Button>
         )

@@ -1,9 +1,11 @@
 import { DiscCard } from './DiscCard'
+import { PlusIcon } from 'app/components/Icons'
 
 export default function Discs() {
     const actions = [
         {
-            label: 'New Disc',
+            label: 'Add New Disc',
+            icon: <PlusIcon />,
             onClick: () => console.log('New Disc'),
         },
     ]

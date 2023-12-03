@@ -1,8 +1,25 @@
+import { Button, IconButton } from '../Button'
 import { Input } from '../Input'
 
-type Action = {
-    onClick: () => void
+type BaseAction = {
+    onClick?: () => void
+    icon?: React.ReactNode
+    href?: string
     label: string
+}
+
+type IconAction = BaseAction & {
+    onClick?: () => void
+    href?: string
+    icon: React.ReactNode
+    label: string
+}
+
+type TextAction = BaseAction & {
+    onClick?: () => void
+    href?: string
+    label: string
+    icon?: never
 }
 
 type PageHeaderProps = {
@@ -10,6 +27,8 @@ type PageHeaderProps = {
     subtitle?: string
     actions?: Action[]
 }
+
+export type Action = IconAction | TextAction
 
 const SearchIcon: React.FC = () => (
     <svg
@@ -28,6 +47,32 @@ const SearchIcon: React.FC = () => (
     </svg>
 )
 
+const createAction = (action: Action) => {
+    if (typeof action.href === 'string' || action.href !== '') {
+        // link
+    }
+
+    if (action.icon)
+        return (
+            <IconButton
+                key={action.label}
+                onClick={action.onClick}
+                label={action.label}
+                leadingIcon={action.icon}
+            />
+        )
+
+    return (
+        <Button key={action.label} onClick={action.onClick}>
+            {action.label}
+        </Button>
+    )
+}
+
+const HeaderActions: React.FC<{ actions: Action[] }> = ({ actions }) => {
+    return actions.map((action) => createAction(action))
+}
+
 export const PageHeader: React.FC<PageHeaderProps> = ({
     title,
     subtitle,
@@ -36,9 +81,12 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     return (
         <div className="mb-4 lg:flex lg:items-center lg:justify-between">
             <div className="flex min-w-0 flex-1 items-center justify-between">
-                <h2 className="text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl sm:tracking-tight">
-                    {title}
-                </h2>
+                <div className="mr-2 flex min-w-0 flex-1 items-center justify-between">
+                    <h2 className="text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl sm:tracking-tight">
+                        {title}
+                    </h2>
+                    {actions && <HeaderActions actions={actions} />}
+                </div>
                 <div className="flex-2">
                     <Input
                         name="search"

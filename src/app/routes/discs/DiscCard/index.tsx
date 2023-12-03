@@ -1,10 +1,10 @@
-import { List } from 'app/components/List'
-import { PageHeader } from 'app/components/PageHeader'
+import { Disc } from 'app/components/Disc'
+import { PageHeader, type Action } from 'app/components/PageHeader'
 
 type DiscCardProps = {
     heading: string
     subheading?: string
-    actions?: { label: string; onClick: () => void }[]
+    actions?: Action[]
 }
 
 const DiscStatus = {
@@ -14,8 +14,31 @@ const DiscStatus = {
     NONE: 'none',
 }
 
-const fakeData = [
+const fakeMessagesData: Record<string, any> = {
+    '1': {
+        id: '1',
+        discId: '1',
+        messages: [
+            {
+                user: '1',
+                text: 'This is a message',
+            },
+        ],
+    },
+}
+
+const fakeUserData = {
+    '1': {
+        id: '1',
+        name: 'John Doe',
+        email: '',
+    },
+}
+
+const fakeDiscData = [
     {
+        id: '1',
+        belongsTo: '1',
         name: 'MD1',
         plastic: 'Horizon',
         manufacturer: 'Discmania',
@@ -30,6 +53,8 @@ const fakeData = [
         image: 'https://gottagogottathrow.com/cdn/shop/files/DMLE-SE-HZSL-MD1_720x.jpg?v=1697816607',
     },
     {
+        id: '2',
+        belongsTo: '1',
         name: 'FD',
         plastic: 'Metal Flake C-Line',
         manufacturer: 'Discmania',
@@ -44,6 +69,8 @@ const fakeData = [
         image: 'https://discdeals.ca/cdn/shop/products/image_509474b6-3afb-49f4-ab20-aad996822fba_1100x.png?v=1667321994',
     },
     {
+        id: '1',
+        belongsTo: '1',
         name: 'Zen 2 Essence',
         plastic: 'Meta',
         manufacturer: 'Discmania',
@@ -58,6 +85,8 @@ const fakeData = [
         image: 'https://discrepublic.ca/cdn/shop/products/discmania-essence-meta-zen-ii-nate-perkins-signature-series-fairway-driver-38604598837506_1024x1024.jpg?v=1671850154',
     },
     {
+        id: '1',
+        belongsTo: '1',
         name: 'DD1',
         plastic: 'Horizon',
         manufacturer: 'Discmania',
@@ -72,6 +101,8 @@ const fakeData = [
         image: 'https://discrepublic.ca/cdn/shop/products/2023-05-2617.40.06_1024x1024.jpg?v=1685141348',
     },
     {
+        id: '1',
+        belongsTo: '1',
         name: 'CD1',
         plastic: 'S-Line',
         manufacturer: 'Discmania',
@@ -86,6 +117,8 @@ const fakeData = [
         image: 'https://discrepublic.ca/cdn/shop/files/2023-10-0712.27.50_1024x1024.jpg?v=1696709248',
     },
     {
+        id: '1',
+        belongsTo: '1',
         name: 'DD3 Cloud Breaker 3',
         plastic: 'S-Line',
         manufacturer: 'Discmania',
@@ -100,6 +133,8 @@ const fakeData = [
         image: 'https://discrepublic.ca/cdn/shop/products/discmania-dd3-special-blend-s-line-cloud-breaker-3-eagle-mcmahon-signature-series-distance-driver-38447931031810_1024x1024.jpg?v=1669340829',
     },
     {
+        id: '1',
+        belongsTo: '1',
         name: 'Vanguard',
         plastic: 'S-Line',
         manufacturer: 'Discmania',
@@ -114,6 +149,8 @@ const fakeData = [
         image: 'https://discrepublic.ca/cdn/shop/products/2023-07-2012.58.54_1024x1024.jpg?v=1691960003',
     },
     {
+        id: '1',
+        belongsTo: '1',
         name: 'MD3',
         plastic: 'Chroma',
         manufacturer: 'Discmania',
@@ -136,19 +173,21 @@ export const DiscCard: React.FC<DiscCardProps> = ({
 }) => {
     return (
         <>
-            <PageHeader title="My Discs" />
+            <PageHeader title="My Discs" actions={actions} />
 
             <ul className="min-w-full">
-                {fakeData.map((disc) => (
-                    <List
-                        key={`${disc.name}-${disc.plastic}`}
-                        name={disc.name}
-                        plastic={disc.plastic}
-                        flightNumbers={disc.flightNumbers}
-                        type={disc.type}
-                        imageUrl={disc.image}
-                        status={disc.status}
-                    />
+                {fakeDiscData.map((disc) => (
+                    <li key={`${disc.name}-${disc.plastic}`}>
+                        <Disc
+                            name={disc.name}
+                            plastic={disc.plastic}
+                            flightNumbers={disc.flightNumbers}
+                            type={disc.type}
+                            imageUrl={disc.image}
+                            status={disc.status}
+                            messages={fakeMessagesData[disc.id]?.messages}
+                        />
+                    </li>
                 ))}
             </ul>
         </>
